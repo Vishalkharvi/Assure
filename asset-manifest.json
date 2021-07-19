@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Assure/static/css/main.12cc4724.chunk.css",
+    "main.js": "/Assure/static/js/main.77ff043b.chunk.js",
+    "main.js.map": "/Assure/static/js/main.77ff043b.chunk.js.map",
+    "runtime-main.js": "/Assure/static/js/runtime-main.8eb71131.js",
+    "runtime-main.js.map": "/Assure/static/js/runtime-main.8eb71131.js.map",
+    "static/css/2.4be38407.chunk.css": "/Assure/static/css/2.4be38407.chunk.css",
+    "static/js/2.54e1f990.chunk.js": "/Assure/static/js/2.54e1f990.chunk.js",
+    "static/js/2.54e1f990.chunk.js.map": "/Assure/static/js/2.54e1f990.chunk.js.map",
+    "index.html": "/Assure/index.html",
+    "static/css/2.4be38407.chunk.css.map": "/Assure/static/css/2.4be38407.chunk.css.map",
+    "static/css/main.12cc4724.chunk.css.map": "/Assure/static/css/main.12cc4724.chunk.css.map",
+    "static/js/2.54e1f990.chunk.js.LICENSE.txt": "/Assure/static/js/2.54e1f990.chunk.js.LICENSE.txt",
+    "static/media/back.c85c6376.jpg": "/Assure/static/media/back.c85c6376.jpg",
+    "static/media/background.562a615e.png": "/Assure/static/media/background.562a615e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8eb71131.js",
+    "static/css/2.4be38407.chunk.css",
+    "static/js/2.54e1f990.chunk.js",
+    "static/css/main.12cc4724.chunk.css",
+    "static/js/main.77ff043b.chunk.js"
+  ]
+}
