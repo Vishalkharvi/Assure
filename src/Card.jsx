@@ -13,7 +13,7 @@ const Card = (props) => {
 
     return (
          <>
-                    <div className='col-md-4 col-10 mx-auto'>
+                    <div className='col-md-4 col-10 mx-auto d-flex flex-wrap'>
 
                     <div className="card" style={{width:'18rem'}}>
                       <img className="card-img-top" src={props.image} alt="Card image cap" />
