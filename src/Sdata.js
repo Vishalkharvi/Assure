@@ -14,167 +14,98 @@ const Sdata = [
      pip install webbrowser`,
      code:`
      
-     import datetime
-# from __future__ import unicode_literals
-import pyttsx3
-import speech_recognition as sr
-import webbrowser
-import wikipedia
-import os
-import requests
-import youtube_dl
-import urllib
-import shutil
-import calendar
-import turtle
-import time
-import wolframalpha
-# import PyAudio
+     import csv
+with open('enjoysport.csv', 'r') as f:
+    reader = csv.reader(f)
+    data = list(reader) 
+print("Training data\n")
+for row in data:
+    print(row)
 
-engine=pyttsx3.init()
-# voices=engine.getProperty('voices')
-# engine.setProperty(voices,voices[0].id)
-# rate=engine.getProperty('rate')
-# engine.setProperty('rate',145)
-# voices=engine.getProperty('voices')
-# engine.setProperty('voice',voices[1].id)
+attr_len = len(data[0])-1
+h = ['0']*attr_len
+print("h=",h)
+k=0
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-
-def WishMe():
-    hour= int(datetime.datetime.now().hour)
-    if hour>0 and hour <12:
-        speak("i am jarvis")
-        speak("good morning how can i help u")
-        print("good morning boss how can i help u")
+print("\nThe Hypothesis are\n")
+for row in data:
     
-    elif hour>12 and hour<18:
-        speak("i am jarvis ")
-        speak("good afternoon bosss")
-        speak("how can i help u")
-        print("good afternoon boss how can i help u")
+    if row[-1] == 'yes':
+        j = 0
+        for col in row:
+            if col != 'yes':
+                if col != h[j] and h[j] == '0':
+                    h[j] = col
+                elif col != h[j] and h[j] != '0':
+                    h[j] = '?'
+                        
+            j = j + 1
+    print("h",k,"=",h) 
+    k=k+1
+        
+print('\nMaximally Specific Hypothesis: \n',"h",k-1,"=", h)
+
+------------------------------------------------------------------------------------------------
+222
+
+import csv
+with open('sheet2.csv', 'r') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+    
+print("Training data")
+for row in data:
+    print(row)
+print("--------------------------------------")
+
+attr_len=len(data[0])-1
+
+S = ['0']*attr_len
+G = ['?']*attr_len
+
+temp=[] 
+
+
+l=0
+print("The Hypothesis are")
+print("S",l," = ",S)
+print("G",l," = ",G)
+print("--------------------------------------")
+for row in data:
+    if row[-1] == 'yes':
+        j = 0
+        for col in row:
+            if col != 'yes':
+                if col != S[j] and S[j] == '0':
+                    S[j] = col
+                elif col != S[j] and S[j] != '0':
+                    S[j] = '?'
+            j = j + 1
+        
+        for j in range(0,attr_len):
+            for k in temp:
+                if k[j] != S[j] and k[j] != '?':
+                    temp.remove(k)
+    if row[-1]=='no':
+        j = 0
+        for col in row:
+            if col != 'no':
+                if col!= S[j] and S[j] != '?':
+                    G[j]=S[j]
+                    temp.append(G)
+                    G=['?']*attr_len
+            j =j + 1
+    print("S",l," = ",S) 
+    if len(temp)==0:
+        print("G",l," = ",G)
     else:
-        speak("i am jarvis sir")
-        speak("hey boss how can i help you")
-        #print("hey boss how cann i help")
-        
-        
-def takeCommand():
-    r=sr.Recognizer()
-    with sr.Microphone() as source:
-        print("listening...")
-        r.pause_threshold=1
-        audio=r.listen(source)
-    try:
-        print("recognising...")
-        query=r.recognize_google(audio, language='en-in')
-        print(f"user said : {query}\n")
-    except Exception as e:
-        speak("sorry for the inconvinience, can you please say it again")
-        print("sorry for the inconvinience, can you please say it again")
-        return "none"
-    return query
-
-def youtube():
-    try:
-        youtube_dl.YoutubeDL().download([videolink])
-    except Exception as e:
-        print(e)
-        print("the link isnt valid")
-        speak("the link isnt valid")
-
-def NewsFromBBC():  
-    main_url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=fc26cd03eed54441a0bada3f90b0c5c5"
-    open_bbc_page = requests.get(main_url).json()
-    article = open_bbc_page["articles"] 
-    results = {}
-    for ar in article: 
-        results[ar["title"]]=ar["description"]
-    for title,description in results.items():
-        print(f"'{title}'--> '{description}'")
-        speak(f"'{title}' -->'{description}'")
-        
-def askme(ques):
-
-    appid="4TVP4Y-7XYRKR9GJY"
-#     q=input("question")
-    client=wolframalpha.Client(appid)
-    result=client.query(ques)
-    kk=result.success
-    if kk=='true':
-        for i in result.results:
-            print(i.text)
-            speak(i.text)
-            
-    else:
-        print("Sorry, I couldnt find the answer, Try someother question")
-        
-
-def calendar(year):
-    year=int(input("enter the year: "))
-    a=calendar.calendar(year)
-    print(a)
-
-def wishing():
-    speak("Wish you happy birthday Ajay")
+        print("G",l," = ",temp)
+    print('-----------------------------------')
+    l=l+1
     
     
-def bday():
-    filename=open("birthdays.txt","r")
-    today=time.strftime("%d%m")
-    for line in filename:
-        if today in line:
-            line=line.split()
-            print(f" Today is {line[1]} {line[2]} birthday, Be the first to wish him. And convey my wishes too")
-            speak(f" Today is {line[1]} {line[2]} birthday, Be the first to wish him. And convey my wishes too")
-        else:
-            print("No other birthday's today, Sir")
-            speak("No other birthday's today, Sir")
-            break
-
+    ----------------------------------------------------------------------------------------
     
-if __name__=="__main__":
-    WishMe()
-    while True:
-        query= takeCommand().lower()
-        
-        if 'wikipedia' in query:
-            speak("searching wikipedia boss")
-            query=query.replace("wikipedia","")
-            result=wikipedia.summary(query, sentences=2)
-            speak("boss, according to wikipedia")
-            print(result)
-            speak(result)
-            
-        elif 'open google' in query:
-            webbrowser.open('www.google.com')
-        elif 'open youtube' in query:
-            webbrowser.open('www.youtube.com')
-        elif "fetch news" in query:
-            NewsFromBBC()
-        elif "download video" in query:
-            videolink=input("enter the link from Youtube to download that video")
-            youtube()
-        elif "open calendar" in query:
-            calendar()
-        elif "whose birthday is today" in query:
-            bday()   
-            
-            
-        elif "hey google" in query:
-            speak("Hey i am google, wishing you many more happy returns of the day Ajay")
-            #print("Hey I am google, wishing you many more happy returns of the day")
-        elif "bye"  in query:
-            print("see you soon boss, i Love you 3000")
-            speak("see you soon boss, i Love you 3000")
-            break
-            
-        else:
-            print("vb")
-            #ques=input("Ask me any general Knowledge question, I will Try to answer you")
-            askme(query) 
      `
 },
     {id:1,order:2,image:background, title:'OCR', content:'Code for this project is below',description:'',code:'' },
