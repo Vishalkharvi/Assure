@@ -108,7 +108,61 @@ for row in data:
     
      `
 },
-    {id:1,order:2,image:background, title:'OCR', content:'Code for this project is below',description:'',code:'' },
+    {id:1,order:2,image:background, title:'OCR', content:'Code for this project is below',description:`This is small project
+    where contents from pages are extracted and recognized, and this recognized words are spoken by google text to speech engine.Use of this 
+    project is that, some languages dont have their own scripts,like Konkani.But konkani jokes and stories are written in Hindi,Devanigiri, so 
+    people can hear to google text to speech engine in konkani itself.
+    
+     Before that should install some dependency and they are :
+     pip install tkinter
+     pip install PIL
+     pip install pytesseract`,
+     code:`
+from tkinter import *
+from PIL import ImageTk,Image
+from tkinter import filedialog
+import pytesseract as py
+py.pytesseract.tesseract_cmd= r'C:\Users\vishalkharvi\Downloads\tesseract.exe'
+
+win=Tk()
+win.title("OCR")
+win.geometry("500x600")
+win.resizable(width=True, height=True)
+
+label1=Label(win, text="P-OCR", font=("times new roman",25, "bold"),bg="blue",fg="red")
+label1.pack(side=BOTTOM, fill=BOTH, expand="yes")
+
+def open_file():
+    file=filedialog.askopenfile(title="select")
+    return file
+
+def open_():
+    path=open_file()
+    image_path=path.name
+    splitted_path=image_path.split("/")
+    backslash="\\\\"
+    norm_path=backslash.join(splitted_path)
+    opened_image=Image.open(norm_path)
+    Texts_from_image=py.image_to_string(opened_image,lang='kan')
+    extracted_text_from_image=""
+    extracted_text_from_image= extracted_text_from_image+str(Texts_from_image)
+
+    win1=Tk()
+    win1.geometry("500x600")
+    Label(win1, text="extracted texts").pack(side=TOP)
+    T=Text(win1)
+    T.delete(1.0,END)
+    T.insert(1.0,extracted_text_from_image)
+    T.pack()
+
+
+button=Button(win, text=" select", font=("arial",25,"bold"),command=open_)
+button.pack()
+
+
+win.mainloop()
+` },
+    
     {id:2,order:3,image:back, title:'Online Video Streamer', content:'Code for this project is below',description:'',code:'' },
     {id:3,order:4,image:back, title:'Amazon Prime Video', content:'Code for this project is below',description:'',code:'' },
     {id:4,order:5,image:back, title:'Hotstar', content:'Code for this project is below',description:'',code:'' },
