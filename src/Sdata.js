@@ -163,10 +163,18 @@ button.pack()
 win.mainloop()
 ` },
     
-    {id:2,order:3,image:back, title:'Online Video Streamer', content:'Code for this project is below',description:'',code:'' },
+    {id:2,order:3,image:back, title:'Youtube Videos Downloader', content:'Code for this project is below',description:`
+    This a small project used to download the youtube videos using python libraries.
+     Before that should install some dependency and they are :
+     pip install youtube_dl
+    `,code:`
+    import youtube_dl
+    keek=input("enter the link of the video you want to download")
+    youtube_dl.YoutubeDL().download(keek)` },
+    
     {id:3,order:4,image:back, title:'Amazon Prime Video', content:'Code for this project is below',description:'',code:'' },
     {id:4,order:5,image:back, title:'Hotstar', content:'Code for this project is below',description:'',code:'' },
-    {id:5,order:6,image:back, title:'Hotstar', content:'Code for this project is below',description:'',code:'' },
+    {id:5,order:6,image:back, title:'Swimato', content:'Code for this project is below',description:'',code:'' },
 
 
 ]
